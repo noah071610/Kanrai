@@ -1,4 +1,5 @@
 # kanrai
+<img width="128" height="128" alt="logo" src="https://github.com/user-attachments/assets/60574bbd-aa5a-4f8b-b8b8-932830302dbf" />
 
 Trace how an HTTP request moves through your codebase, from annotations your AI
 agent leaves in the source.
