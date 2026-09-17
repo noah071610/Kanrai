@@ -1,19 +1,19 @@
-import * as path from "node:path";
-import * as vscode from "vscode";
 import {
-  findTable,
-  flowId,
-  loadConfig,
-  nextSteps,
-  parseSource,
-  watchProject,
-  type KanraiConfig,
-  type DbSchema,
-  type Diagnostic,
-  type FlowIndex,
-  type WatchHandle,
+    findTable,
+    flowId,
+    loadConfig,
+    nextSteps,
+    parseSource,
+    watchProject,
+    type KanraiConfig,
+    type DbSchema,
+    type Diagnostic,
+    type FlowIndex,
+    type WatchHandle,
 } from "@kanrai/core";
 import { watchDb } from "@kanrai/db";
+import * as path from "node:path";
+import * as vscode from "vscode";
 
 /**
  * The extension is an optional convenience layer. It does no parsing and no
