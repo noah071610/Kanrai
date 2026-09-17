@@ -1,0 +1,7 @@
+{
+  "name": "kanrai-example",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "*"
+  }
+}

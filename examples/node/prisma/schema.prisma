@@ -1,0 +1,143 @@
+enum Role {
+  customer
+  admin
+}
+
+enum UserStatus {
+  active
+  locked
+}
+
+enum OrderStatus {
+  pending
+  paid
+  shipped
+  cancelled
+}
+
+enum PaymentMethod {
+  card
+  bank
+  points
+}
+
+enum PaymentStatus {
+  pending
+  succeeded
+  failed
+  refunded
+  refund_pending
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  passwordHash String        @map("password_hash")
+  displayName  String?       @map("display_name")
+  role         Role          @default(customer)
+  status       UserStatus    @default(active)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  sessions     Session[]
+  orders       Order[]
+  pointEntries PointLedger[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  refreshToken String   @unique @map("refresh_token")
+  expiresAt    DateTime @map("expires_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Product {
+  id         String      @id @default(cuid())
+  sku        String      @unique
+  name       String
+  priceCents Int         @map("price_cents")
+  stock      Int
+  items      OrderItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id            String        @id @default(cuid())
+  userId        String        @map("user_id")
+  status        OrderStatus   @default(pending)
+  paymentMethod PaymentMethod @map("payment_method")
+  totalCents    Int           @map("total_cents")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  cancelledAt   DateTime?     @map("cancelled_at")
+  user          User          @relation(fields: [userId], references: [id])
+  items         OrderItem[]
+  payment       Payment?
+
+  @@map("orders")
+}
+
+model OrderItem {
+  orderId        String  @map("order_id")
+  productId      String  @map("product_id")
+  quantity       Int
+  unitPriceCents Int     @map("unit_price_cents")
+  order          Order   @relation(fields: [orderId], references: [id])
+  product        Product @relation(fields: [productId], references: [id])
+
+  @@id([orderId, productId])
+  @@map("order_items")
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  orderId     String        @unique @map("order_id")
+  method      PaymentMethod
+  status      PaymentStatus @default(pending)
+  amountCents Int           @map("amount_cents")
+  providerRef String?       @unique @map("provider_ref")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  order       Order         @relation(fields: [orderId], references: [id])
+
+  @@map("payments")
+}
+
+model PointLedger {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  delta     Int
+  reason    String
+  orderId   String?  @map("order_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([orderId, reason])
+  @@map("point_ledger")
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  category  String
+  title     String
+  payload   Json?
+  createdAt DateTime @default(now()) @map("created_at")
+  coupons   Coupon[]
+
+  @@map("events")
+}
+
+model Coupon {
+  code    String    @id
+  eventId String    @map("event_id")
+  userId  String?   @map("user_id")
+  usedAt  DateTime? @map("used_at")
+  event   Event     @relation(fields: [eventId], references: [id])
+
+  @@unique([eventId, userId])
+  @@map("coupons")
+}

@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "kanrai: build extension",
+      "type": "shell",
+      "command": "npm run build:core && npm run build:db && npm run build:vscode",
+      "problemMatcher": []
+    }
+  ]
+}

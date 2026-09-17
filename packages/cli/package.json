@@ -1,0 +1,60 @@
+{
+  "name": "kanrai",
+  "version": "0.0.1",
+  "description": "Trace how HTTP requests move through your codebase, from annotations your AI agent leaves in the source.",
+  "keywords": [
+    "api",
+    "flow",
+    "annotations",
+    "visualizer",
+    "prisma",
+    "drizzle",
+    "django"
+  ],
+  "license": "MIT",
+  "author": "Noah Jang",
+  "homepage": "https://github.com/noah071610/Kanrai#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah071610/Kanrai.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/noah071610/Kanrai/issues"
+  },
+  "type": "module",
+  "bin": {
+    "kanrai": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "viewer"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepack": "node -e \"const fs=require('fs');fs.rmSync('viewer',{recursive:true,force:true});fs.cpSync('../../apps/viewer/dist','viewer',{recursive:true})\""
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@mrleebo/prisma-ast": "^0.16.0",
+    "chokidar": "^4.0.3",
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.3",
+    "hono": "^4.6.14",
+    "jiti": "^2.7.0",
+    "picocolors": "^1.1.1",
+    "picomatch": "^4.0.7",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@kanrai/core": "0.0.1",
+    "@kanrai/db": "0.0.1",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5"
+  }
+}

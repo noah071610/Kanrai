@@ -1,0 +1,14 @@
+model Post {
+  id       Int    @id
+  slug     String
+  authorId Int
+  author   User   @relation(fields: [authorId], references: [id])
+
+  @@unique([authorId, slug])
+}
+
+model Membership {
+  userId Int
+  teamId Int
+  @@id([userId, teamId])
+}

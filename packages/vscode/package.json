@@ -1,0 +1,151 @@
+{
+  "name": "kanrai-vscode",
+  "displayName": "kanrai",
+  "description": "Follow an API request through your code. Cmd/Ctrl+click from step to step, catch broken flows, see table schemas on hover.",
+  "icon": "src/assets/logo.png",
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Noah Jang",
+  "homepage": "https://github.com/noah071610/Kanrai#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah071610/Kanrai.git",
+    "directory": "packages/vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/noah071610/Kanrai/issues"
+  },
+  "private": true,
+  "publisher": "noah071610",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Visualization",
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "api",
+    "flow",
+    "request",
+    "trace",
+    "annotations",
+    "endpoint",
+    "call graph",
+    "prisma",
+    "drizzle",
+    "django",
+    "ai"
+  ],
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "kanrai",
+      "properties": {
+        "kanrai.annotationForeground": {
+          "type": "string",
+          "format": "color",
+          "default": "#3B82F6",
+          "description": "Text color for kanrai flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationBackground": {
+          "type": "string",
+          "format": "color",
+          "default": "#3B82F633",
+          "description": "Background color for kanrai flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationApiForeground": {
+          "type": "string",
+          "format": "color",
+          "default": "#8B5CF6",
+          "description": "Text color for api: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationApiBackground": {
+          "type": "string",
+          "format": "color",
+          "default": "#8B5CF633",
+          "description": "Background color for api: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationDbForeground": {
+          "type": "string",
+          "format": "color",
+          "default": "#059669",
+          "description": "Text color for db: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationDbBackground": {
+          "type": "string",
+          "format": "color",
+          "default": "#05966933",
+          "description": "Background color for db: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationFailForeground": {
+          "type": "string",
+          "format": "color",
+          "default": "#DC2626",
+          "description": "Text color for fail: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationFailBackground": {
+          "type": "string",
+          "format": "color",
+          "default": "#DC262633",
+          "description": "Background color for fail: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationCaseForeground": {
+          "type": "string",
+          "format": "color",
+          "default": "#D97706",
+          "description": "Text color for case: flow annotations.",
+          "scope": "window"
+        },
+        "kanrai.annotationCaseBackground": {
+          "type": "string",
+          "format": "color",
+          "default": "#D9770633",
+          "description": "Background color for case: flow annotations.",
+          "scope": "window"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "kanrai.rescan",
+        "title": "kanrai: Rescan flows"
+      },
+      {
+        "command": "kanrai.openViewer",
+        "title": "kanrai: Open flow viewer in browser"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch src --watch ../core/dist --watch ../db/dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@kanrai/core": "0.0.1",
+    "@kanrai/db": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.90.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

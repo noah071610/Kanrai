@@ -1,0 +1,4 @@
+Django>=5.0,<6
+djangorestframework>=3.15
+stripe>=10
+requests>=2.32

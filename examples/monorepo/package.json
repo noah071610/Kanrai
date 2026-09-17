@@ -1,0 +1,7 @@
+{
+  "name": "kanrai-example-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ]
+}

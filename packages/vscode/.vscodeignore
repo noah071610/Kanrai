@@ -1,0 +1,6 @@
+src/**
+!src/assets/logo.png
+node_modules/
+tsconfig.json
+tsup.config.ts
+**/*.map

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "kanrai: Extension (node)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode", "${workspaceFolder}/examples/node"],
+      "outFiles": ["${workspaceFolder}/packages/vscode/dist/**/*.cjs"],
+      "preLaunchTask": "kanrai: build extension"
+    },
+    {
+      "name": "kanrai: Extension (django)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode", "${workspaceFolder}/examples/django"],
+      "outFiles": ["${workspaceFolder}/packages/vscode/dist/**/*.cjs"],
+      "preLaunchTask": "kanrai: build extension"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "kanrai",
+  "private": true,
+  "version": "0.0.0",
+  "description": "API flow annotation parser + visualizer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah071610/Kanrai.git"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@kanrai/core && npm run build --workspace=@kanrai/db && npm run build --workspace=@kanrai/viewer && npm run build --workspace=kanrai",
+    "build:core": "npm run build --workspace=@kanrai/core",
+    "build:cli": "npm run build --workspace=kanrai",
+    "build:viewer": "npm run build --workspace=@kanrai/viewer",
+    "dev:core": "npm run dev --workspace=@kanrai/core",
+    "dev:viewer": "npm run dev --workspace=@kanrai/viewer",
+    "clean": "rm -rf packages/*/dist apps/*/dist packages/*/*.tsbuildinfo",
+    "build:db": "npm run build --workspace=@kanrai/db",
+    "test": "npm test --workspace=@kanrai/core --workspace=@kanrai/db",
+    "build:vscode": "npm run build --workspace=kanrai-vscode",
+    "dev:vscode": "npm run dev --workspace=kanrai-vscode",
+    "dev:db": "npm run dev --workspace=@kanrai/db",
+    "scan:node": "node packages/cli/dist/index.js scan -C examples/node",
+    "watch:node": "node packages/cli/dist/index.js watch -C examples/node",
+    "visualize:node": "node packages/cli/dist/index.js visualize -C examples/node",
+    "scan:django": "node packages/cli/dist/index.js scan -C examples/django",
+    "watch:django": "node packages/cli/dist/index.js watch -C examples/django",
+    "visualize:django": "node packages/cli/dist/index.js visualize -C examples/django",
+    "scan:monorepo": "node packages/cli/dist/index.js scan -C examples/monorepo",
+    "watch:monorepo": "node packages/cli/dist/index.js watch -C examples/monorepo",
+    "visualize:monorepo": "node packages/cli/dist/index.js visualize -C examples/monorepo"
+  },
+  "devDependencies": {
+    "dokomade": "0.2.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
