@@ -4,9 +4,11 @@
 Trace how an HTTP request moves through your codebase, from annotations your AI
 agent leaves in the source.
 
-<video src="https://raw.githubusercontent.com/noah071610/Kanrai/main/assets/preview.mp4" controls muted autoplay loop playsinline width="100%"></video>
 
-[▶ Watch the preview](assets/preview.mp4)
+
+https://github.com/user-attachments/assets/4359e5f8-83b5-439c-9813-00fecfda8600
+
+
 
 ```
 // [POST: /api/auth/login flow-1] Entry point; reads email and password
