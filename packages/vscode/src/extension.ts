@@ -1,4 +1,5 @@
 import {
+    CONFIG_FILENAME,
     findTable,
     flowId,
     loadConfig,
@@ -47,6 +48,13 @@ const ANNOTATION_KINDS: readonly AnnotationKind[] = [
 export async function activate(context: vscode.ExtensionContext) {
   const folder = vscode.workspace.workspaceFolders?.[0];
   if (!folder) return;
+
+  // Opt-in: only projects that ran `kanrai init` get a watcher and a .kanrai dir.
+  try {
+    await vscode.workspace.fs.stat(vscode.Uri.joinPath(folder.uri, CONFIG_FILENAME));
+  } catch {
+    return;
+  }
 
   root = folder.uri.fsPath;
   config = await loadConfig(root);
